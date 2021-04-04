@@ -11,7 +11,9 @@ const register = async function (req, res, next) {
             await dbclient.register(req);
         }
         else {
-            res.send("please enter valid number");
+            res.send({
+                "message":"couldnt send message for mobile verification"
+            });
         }
     }
     catch (err) {
