@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.get('/hi', function(req, res){
+app.get('/asglb', function(req, res){
     res.send("testing auto scaling and load balancer")
 })
 
