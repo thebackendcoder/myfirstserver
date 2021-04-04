@@ -1,8 +1,22 @@
 
-const dbclient= require('../modules/dynamoclient')
+const dbclient = require('../modules/dynamoclient')
+const fast2sms = require('fast-two-sms');
 
 const register = async function (req, res, next) {
-    await dbclient.register(req);
+    const mobile = req.body.mobile
+    try {
+        const mobres = await fast2sms.sendMessage({ authorization: "25YbuoFpn3e7WRlqaVr4hcJsEDMkB0ONvfjgIHKQydGPwUS9C6n7A1cGtKUPSZbTVpDJM2CIEx6wus8g", message: "you have registerd", numbers: [mobile] })
+        console.log(mobres)
+        if (mobres.return) {
+            await dbclient.register(req);
+        }
+        else {
+            res.send("please enter valid number");
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
     next();
 }
 
