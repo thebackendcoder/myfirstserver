@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 
-app.get('/', function(req, res){
-    res.send("This is the fiest")
+app.get('/hi', function(req, res){
+    res.send("testing auto scaling and load balancer")
 })
 
 const port = process.env.port || 3000;
